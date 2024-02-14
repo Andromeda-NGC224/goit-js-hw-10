@@ -9,7 +9,7 @@
 @import url('./header.css');
 
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -23,3 +23,131 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+body {
+  padding: 24px;
+}
+
+.sectionWelcome h1 {
+  margin-bottom: 30px;
+}
+.sectionWelcome a {
+  margin-left: 30px;
+}
+
+/* Timer styles */
+
+.timerSection {
+  margin: 100px auto;
+  width: 355px;
+}
+
+.timerSection button {
+  margin-bottom: 16px;
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 95px;
+  height: 40px;
+  background: #4e75ff;
+  border-style: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+#datetime-picker {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  width: 170px;
+  height: 35px;
+  border-radius: 8px;
+  border: 1px solid #808080;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-right: 20px;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.timer {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.value {
+  font-size: 30px;
+}
+
+.timerHomeLink {
+  border-radius: 8px;
+  border: 1px solid #f75252;
+  padding: 8px;
+  margin-right: 12px;
+}
+.timerNextLink {
+  border-radius: 8px;
+  border: 1px solid #5190f0;
+  padding: 8px;
+}
+
+/* /Timer styles */
+
+/* Snackbar styles */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.snackbarSection {
+  margin: 100px auto;
+  width: 355px;
+}
+
+.labelDelay {
+  display: flex;
+  flex-direction: column;
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.delay {
+  margin-top: 20px;
+  width: 355px;
+  height: 40px;
+  font-size: 20px;
+  padding-left: 12px;
+  border-radius: 8px;
+  border: 1px solid #808080;
+}
+
+.fieldset {
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid #808080;
+  width: 345px;
+  height: 60px;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 16px;
+}
+
+.create {
+  width: 280px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  padding: 8px 16px;
+  height: 40px;
+  background: #4e75ff;
+  border-style: none;
+  color: #fff;
+  cursor: pointer;
+}
+/* /Snackbar styles */

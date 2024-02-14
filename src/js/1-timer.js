@@ -14,33 +14,31 @@ const dataSeconds = document.querySelector(`[data-seconds]`);
 
 startButton.disabled = true;
 
-flatpickr(datetimePicker, {
+const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
-
-    if (selectedDates[0] <= new Date()) {
+    if (selectedDates[0] <= options.defaultDate) {
       iziToast.error({
-        message: 'Please, choose a date in the future!',
+        message: 'Please choose a date in the future',
         position: 'topRight',
       });
     } else {
       startButton.disabled = false;
     }
   },
-});
+};
 
-startButton.addEventListener(`click`, timer);
+flatpickr(datetimePicker, options);
 
-function timer() {
+startButton.addEventListener(`click`, () => {
   startButton.disabled = true;
   datetimePicker.disabled = true;
   const intervalId = setInterval(() => {
-    const currantDate = new Date(datetimePicker.value);
-    let count = currantDate - new Date();
+    const pickedDate = new Date(datetimePicker.value);
+    const count = pickedDate - new Date();
     if (count <= 0) {
       clearInterval(intervalId);
       startButton.disabled = false;
@@ -50,7 +48,7 @@ function timer() {
     const { days, hours, minutes, seconds } = convertMs(count);
     updateTimerScreen(days, hours, minutes, seconds);
   }, 1000);
-}
+});
 
 function convertMs(ms) {
   const second = 1000;
@@ -68,7 +66,7 @@ function convertMs(ms) {
 
 // Додавання нуля спереду
 function addingZeroFirst(value) {
-  return String(value).padStart(2, '0');
+  return String(value).padStart(2, `0`);
 }
 
 // Оновлення екрану таймера
