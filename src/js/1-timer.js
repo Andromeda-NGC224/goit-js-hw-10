@@ -12,46 +12,43 @@ const dataHours = document.querySelector(`[data-hours]`);
 const dataMinutes = document.querySelector(`[data-minutes]`);
 const dataSeconds = document.querySelector(`[data-seconds]`);
 
-let userSelectedDate;
-const options = {
+startButton.disabled = true;
+
+flatpickr(datetimePicker, {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    let selectedDate = selectedDates[0];
-    if (selectedDates < this.defaultDate) {
+    console.log(selectedDates[0]);
+
+    if (selectedDates[0] <= new Date()) {
       iziToast.error({
-        title: 'Error',
-        message: 'Please choose a date in the future',
+        message: 'Please, choose a date in the future!',
+        position: 'topRight',
       });
-      startButton.disabled = true;
     } else {
-      userSelectedDate = selectedDate;
       startButton.disabled = false;
     }
   },
-};
-
-let instance = flatpickr(datetimePicker, options);
+});
 
 startButton.addEventListener(`click`, timer);
-function timer(event) {
-  console.log(options.selectedDate);
-  //   startButton.disabled = true;
-  //   datetimePicker.disabled = true;
 
+function timer() {
+  startButton.disabled = true;
+  datetimePicker.disabled = true;
   const intervalId = setInterval(() => {
-    const count = userSelectedDate.getTime() - new Date().getTime();
+    const currantDate = new Date(datetimePicker.value);
+    let count = currantDate - new Date();
     if (count <= 0) {
       clearInterval(intervalId);
-      UppdateTimerScreen(0);
       startButton.disabled = false;
       datetimePicker.disabled = false;
       return;
     }
     const { days, hours, minutes, seconds } = convertMs(count);
-    UppdateTimerScreen(days, hours, minutes, seconds);
+    updateTimerScreen(days, hours, minutes, seconds);
   }, 1000);
 }
 
@@ -75,7 +72,7 @@ function addingZeroFirst(value) {
 }
 
 // Оновлення екрану таймера
-function UppdateTimerScreen(days, hours, minutes, seconds) {
+function updateTimerScreen(days, hours, minutes, seconds) {
   dataDays.textContent = addingZeroFirst(days);
   dataHours.textContent = addingZeroFirst(hours);
   dataMinutes.textContent = addingZeroFirst(minutes);
